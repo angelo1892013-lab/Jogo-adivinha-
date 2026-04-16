@@ -1,0 +1,16 @@
+<h1>Adivinha o número</h1>
+<input id="num" type="number">
+<button onclick="check()">Tentar</button>
+
+<script>
+let segredo = Math.floor(Math.random() * 10) + 1;
+
+function check() {
+  let valor = document.getElementById("num").value;
+  if (valor == segredo) {
+    alert("Ganhaste!");
+  } else {
+    alert("Errado! Tenta outra vez");
+  }
+}
+</script>
