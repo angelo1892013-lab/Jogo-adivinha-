@@ -1,5 +1,47 @@
 <h1>Adivinha o número</h1>
+<input id="num" type="number"><h1>Adivinha o número (com tempo)</h1>
+
+<p>⏱️ Tempo: <span id="tempo">10</span> segundos</p>
+
 <input id="num" type="number">
+<button onclick="check()">Tentar</button>
+
+<p id="msg"></p>
+
+<script>
+let segredo = Math.floor(Math.random() * 10) + 1;
+let tempo = 10;
+let gameOver = false;
+
+// Timer
+let timer = setInterval(() => {
+  if (gameOver) return;
+
+  tempo--;
+  document.getElementById("tempo").innerText = tempo;
+
+  if (tempo <= 0) {
+    gameOver = true;
+    clearInterval(timer);
+    document.getElementById("msg").innerText = "⛔ Tempo acabou! Perdeste!";
+  }
+}, 1000);
+
+// Jogo
+function check() {
+  if (gameOver) return;
+
+  let valor = document.getElementById("num").value;
+
+  if (valor == segredo) {
+    gameOver = true;
+    clearInterval(timer);
+    document.getElementById("msg").innerText = "🎉 Ganhaste!";
+  } else {
+    document.getElementById("msg").innerText = "❌ Errado! Tenta outra vez";
+  }
+}
+</script>
 <button onclick="check()">Tentar</button>
 
 <script>
